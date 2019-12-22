@@ -31,9 +31,8 @@
 
 ######## SHELL STUFF & DOTFILES ###################################################################
 
-# # set up zsh and oh-my-zsh
-# sudo apt-get install zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
+# install zsh and oh-my-zsh
+. ./scripts/install_oh_my_zsh.sh
 
 # call subscript that sets up dotfiles
 # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
