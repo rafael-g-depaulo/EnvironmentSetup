@@ -29,18 +29,19 @@
 # sudo apt-get install wget curl git
 
 
-# ########## SHELL STUFF ################################################################################
+######## SHELL STUFF & DOTFILES ###################################################################
 
 # # set up zsh and oh-my-zsh
 # sudo apt-get install zsh
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
 
-echo "`cat ./.bashrc`"  > ~/.bashrc
-echo "`cat ./.zshrc`"   > ~/.zshrc
-echo "`cat ./.profile`" > ~/.profile
+# call subscript that sets up dotfiles
+# the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
+cd scripts              # the set_up_dotfiles.sh script only works when ran directly from './scripts'
+. ./set_up_dotfiles.sh  # set up dotfiles
+cd ..                   # go back to this git's root
 
-
-# ########## STUFF MY TOOLS NEED BUT I DONT USE ##############################################################
+######## STUFF MY TOOLS NEED BUT I DONT USE #########################################################
 
 # # set up python? idk if this is working correctly for actual python use
 # # some of my tools use python and they didnt complain
@@ -53,13 +54,13 @@ echo "`cat ./.profile`" > ~/.profile
 # sudo apt-get install fonts-powerline -y
 
 
-# ########## MY UTILITIES ####################################################################################
+######### MY UTILITIES ####################################################################################
 
 # git flow
-wget -q  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
+# wget -q  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
 
 
-# ########## MY DEVELOPMENT TOOLS ############################################################################
+######### MY DEVELOPMENT TOOLS ############################################################################
 
 # # set up nvm and node
 # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
