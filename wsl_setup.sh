@@ -11,6 +11,10 @@
 #! OBS: remember to run this to copy your windows ssh keys to this if you're using wsl inside a windows pc that has ssh keys
 # cp -r /mnt/c/Users/<your windows user name here>/.ssh ~/.
 
+####### PARSE ARGUMENTS ####################################################################################
+. ./scripts/parse_arguments.sh
+
+
 # ###### SET UP LINKS TO WINDOWS SUPERSYSTEM ###############################################################
 # cd
 # mkdir /mnt/c/projects
