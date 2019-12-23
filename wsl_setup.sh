@@ -52,6 +52,9 @@ echo "`cat ./.profile`" > ~/.profile
 # # powerline fonts for "agnoster" oh-my-zsh theme
 # sudo apt-get install fonts-powerline -y
 
+# # # postgres (i use postgresdb with rails, technically)
+# sudo apt-get install postgresql postgresql-contrib libpq-dev -y
+
 
 # ########## MY UTILITIES ####################################################################################
 
