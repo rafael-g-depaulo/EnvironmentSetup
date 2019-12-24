@@ -40,12 +40,6 @@ cd scripts              # the set_up_dotfiles.sh script only works when ran dire
 . ./set_up_dotfiles.sh  # set up dotfiles
 cd ..                   # go back to this git's root
 
-######## STUFF MY TOOLS NEED BUT I DONT USE #########################################################
-
-# # powerline fonts for "agnoster" oh-my-zsh theme
-# sudo apt-get install fonts-powerline -y
-
-
 ######### MY UTILITIES ####################################################################################
 . ./scripts/install_utilities.sh
 
