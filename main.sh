@@ -7,11 +7,11 @@
 
 ###### OBSERVATIONS ######################################
 #! OBS: remember to add these permissions before executing this script
-#! chmod +x wsl_setup.sh
+#! chmod +x main.sh
 # (check that you're already in this folder when executing the above command)
 
 #! OBS: this script should be executed with
-# bash wsl_setup.sh [args]
+# bash main.sh [args]
 
 #! OBS: remember to run this to copy your windows ssh keys to this if you're using wsl inside a windows pc that has ssh keys
 # cp -r /mnt/c/Users/<your windows user name here>/.ssh ~/.
@@ -19,17 +19,13 @@
 ####### PARSE ARGUMENTS ####################################################################################
 . ./scripts/parse_arguments.sh
 
-
-# ###### SET UP LINKS TO WINDOWS SUPERSYSTEM ###############################################################
-# cd
-# mkdir /mnt/c/projects
-# ln -s /mnt/c/projects
-
+# ###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ##########################################################
+. ./scripts/wsl_setup.sh
 
 # ######## UPDATE REPOS ####################################################################################
 . ./scripts/update_repos.sh
 
-######## SHELL STUFF & DOTFILES ###################################################################
+######## SHELL STUFF & DOTFILES ############################################################################
 
 # install zsh and oh-my-zsh
 . ./scripts/install_oh_my_zsh.sh
