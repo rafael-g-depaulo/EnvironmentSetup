@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ##### README #############################################
 # this is a .sh file to set up my (@not_ragan on twitter!)
 # development environment for ubuntu. it installs my necessary tools
@@ -7,6 +9,9 @@
 #! OBS: remember to add these permissions before executing this script
 #! chmod +x wsl_setup.sh
 # (check that you're already in this folder when executing the above command)
+
+#! OBS: this script should be executed with
+# bash wsl_setup.sh [args]
 
 #! OBS: remember to run this to copy your windows ssh keys to this if you're using wsl inside a windows pc that has ssh keys
 # cp -r /mnt/c/Users/<your windows user name here>/.ssh ~/.
