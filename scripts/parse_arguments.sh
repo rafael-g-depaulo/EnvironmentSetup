@@ -18,14 +18,34 @@ case $i in
   
 #! DEV TOOLS OPTIONS
   # node and nvm options
-  --node)
+  --node|--nvm)
   INSTALL_NODE=YES
+  shift # past argument with no value
+  ;;
+  --no-node|--no-nvm)
+  INSTALL_NODE=NO
   shift # past argument with no value
   ;;
 
   # yarn options
   --yarn)
+  INSTALL_NODE=YES
   INSTALL_YARN=YES
+  shift # past argument with no value
+  ;;
+  --no-yarn)
+  INSTALL_YARN=NO
+  shift # past argument with no value
+  ;;
+
+  # rails options
+  --rails|-r)
+  INSTALL_NODE=YES
+  INSTALL_YARN=YES
+  shift # past argument with no value
+  ;;
+  --no-rails)
+  INSTALL_YARN=NO
   shift # past argument with no value
   ;;
 
@@ -38,9 +58,3 @@ done
 # echo "WINDOWS USER    = ${WINDOWS_USER}"
 # echo "DEFAULT         = ${DEFAULT}"
 # echo "INSTALL_NODE    = ${INSTALL_NODE}"
-
-# EOF
-
-# chmod +x /tmp/demo-equals-separated.sh
-
-# /tmp/demo-equals-separated.sh -u=Ragan
