@@ -1,25 +1,4 @@
-# this function checks if its supposed to install a tool, and installs it if necessary
-check_and_install() {
-  # $1: wether we're supposed to install that tool or not
-  local SHOULD_I_INSTALL_TOOL=$1
-  # $2: function that when called installs the tool
-  local INSTALL_FUNCTION=$2
-  # $3: string for a query asking wether the tool should be installed or not
-  local INSTALL_QUERRY=$3
-
-  if [[ $SHOULD_I_INSTALL_TOOL = "YES" ]]; then
-    $INSTALL_FUNCTION
-  elif [[ $SHOULD_I_INSTALL_TOOL != "NO" ]]; then
-    printf "$INSTALL_QUERRY "
-    read SHOULD_I_INSTALL_TOOL1
-    if [[ $SHOULD_I_INSTALL_TOOL1 =~ $REGEX_YES ]]; then
-      $INSTALL_FUNCTION
-    fi
-  fi
-
-}
-
-REGEX_YES='[y|yes|Y|YES]'
+source '../utils/check_and_install.sh'
 
 # set up nvm and node
 install_node_nvm() {
