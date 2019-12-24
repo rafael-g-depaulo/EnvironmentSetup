@@ -15,15 +15,29 @@ case $i in
   DEFAULT=YES
   shift # past argument with no value
   ;;
-  *)
   
+#! DEV TOOLS OPTIONS
+  # node and nvm options
+  --node)
+  INSTALL_NODE=YES
+  shift # past argument with no value
+  ;;
+
+  # yarn options
+  --yarn)
+  INSTALL_YARN=YES
+  shift # past argument with no value
+  ;;
+
   # unknown option
+  *)
   ;;
 esac
 done
 
-echo "WINDOWS USER    = ${WINDOWS_USER}"
-echo "DEFAULT         = ${DEFAULT}"
+# echo "WINDOWS USER    = ${WINDOWS_USER}"
+# echo "DEFAULT         = ${DEFAULT}"
+# echo "INSTALL_NODE    = ${INSTALL_NODE}"
 
 # EOF
 
