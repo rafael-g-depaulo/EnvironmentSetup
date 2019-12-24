@@ -25,5 +25,3 @@ check_and_install() {
 
 # regex to check for yes from user input
 REGEX_YES='[y|yes|Y|YES]'
-
-echo "asdasf"

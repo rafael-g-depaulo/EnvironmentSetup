@@ -27,16 +27,7 @@
 
 
 # ######## UPDATE REPOS ####################################################################################
-
-# curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-# echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-# sudo apt update
-# sudo apt-get update
-
-# # just to be sure these important tools are installed on the machine
-# sudo apt-get install build-essential
-# sudo apt-get install wget curl git
-
+. ./scripts/update_repos.sh
 
 ######## SHELL STUFF & DOTFILES ###################################################################
 
