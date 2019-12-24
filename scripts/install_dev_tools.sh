@@ -34,6 +34,16 @@ install_rvm_rails() {
   # rvm install current
   # rvm use --default current
   # cd
+  
+  # # postgres (i use postgresdb with rails, technically)
+  # sudo apt-get install postgresql postgresql-contrib libpq-dev -y
+  # sudo apt-get install libpq-dev -y
+  # sudo -i -u postgres
+  # psql
+  # CREATE USER $USER WITH PASSWORD $PASSWORD;
+  # ALTER USER $USER WITH SUPERUSER;
+  # \q
+  # exit
 }
 check_and_install "$INSTALL_RAILS" install_rvm_rails "should rails & ruby be installed?"
 

@@ -42,18 +42,8 @@ cd ..                   # go back to this git's root
 
 ######## STUFF MY TOOLS NEED BUT I DONT USE #########################################################
 
-# # set up python? idk if this is working correctly for actual python use
-# # some of my tools use python and they didnt complain
-# sudo apt-get install software-properties-common -y
-# sudo add-apt-repository ppa:deadsnakes/ppa -y
-# sudo apt-get install python3.6 -y
-# sudo apt install python-minimal -y
-
 # # powerline fonts for "agnoster" oh-my-zsh theme
 # sudo apt-get install fonts-powerline -y
-
-# # # postgres (i use postgresdb with rails, technically)
-# sudo apt-get install postgresql postgresql-contrib libpq-dev -y
 
 
 ######### MY UTILITIES ####################################################################################
