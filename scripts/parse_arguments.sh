@@ -17,6 +17,21 @@ case $i in
   ;;
   *)
   
+#! DEV TOOLS OPTIONS
+  # node and nvm options
+  --node)
+  INSTALL_NODE=YES
+  shift # past argument with no value
+  ;;
+  *)
+
+  # yarn options
+  --yarn)
+  INSTALL_YARN=YES
+  shift # past argument with no value
+  *)
+  ;;
+
   # unknown option
   ;;
 esac
