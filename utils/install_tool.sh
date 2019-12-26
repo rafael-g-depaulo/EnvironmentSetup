@@ -7,11 +7,15 @@ install_tool() {
   shift
 
   while test $# -gt 0; do
-    # $1: the name of the package we're installing
+    # the name of the package we're installing
     local PKG=$1
     shift
+
+    # the installation function to use (default to apt-get)
+    local INSTALL_FUNCTION=${1:-"apt_get_install"}
+    shift
     
-    # $2: the aditional flags that should be passed to apt-get 
+    # the aditional (optional) flags that should be passed to apt-get 
     local FLAGS=${1:-""}
     shift
 
@@ -22,7 +26,7 @@ install_tool() {
     # if package isnt installed, install it
     if [ 0 == $PKG_OK ]; then
       echo "No $PKG. Setting up $PKG."
-      sudo apt-get install -y -qq $FLAGS $PKG  -qq > /dev/null
+      $INSTALL_FUNCTION $PKG $FLAGS
 
     # if its already installed, just move on
     else
@@ -31,10 +35,25 @@ install_tool() {
   done
 }
 
-# usage of install_tool shall be as shown bellow:
+apt_get_install() {
+  
+  # $1: the name of the package we're installing
+  local PKG=$1
+  shift
+  
+  # $2: the aditional (optional) flags that should be passed to apt-get 
+  local FLAGS=${1:-""}
+  shift
+
+  echo "installing package '$PKG', with flags '$FLAGS'"
+
+  sudo apt-get install -y -qq $FLAGS $PKG  -qq > /dev/null
+}
+
+# Usage of install_tool shall be as shown bellow:
 # to install tool "node", with packages "yarn" (with flag --no-install-recommends), "nvm" and "node"
 
-# install_tool "node"
-#   "nvm"  ""
-#   "node" ""
-#   "yarn" "--no-install-recommends"
+# install_tool "node" \
+#   "nvm"  "echo pretending to install" "" \
+#   "node" "echo pretending to install" "" \
+#   "yarn" "echo pretending to install" "--no-install-recommends"
