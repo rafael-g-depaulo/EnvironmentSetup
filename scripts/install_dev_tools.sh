@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source '../utils/check_and_install.sh'
+source "$DIR/utils/check_and_install.sh"
 
 # set up nvm and node
 install_node_nvm() {
