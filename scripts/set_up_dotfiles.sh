@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # this gets a list of all dotfiles in the dotfiles folder, and
 # adds them to a temporary file, so we can work with them
 dotfiles_folder="../dotfiles"

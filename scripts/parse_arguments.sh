@@ -1,5 +1,4 @@
-# cat >/tmp/demo-equals-separated.sh <<'EOF'
-# #!/bin/bash
+#!/bin/bash
 
 for i in "$@"
 do

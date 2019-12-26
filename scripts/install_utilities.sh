@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # installing utilities
 
 # git flow

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source '../utils/check_and_install.sh'
 
 update_repos() {
