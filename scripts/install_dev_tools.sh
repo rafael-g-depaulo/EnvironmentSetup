@@ -11,7 +11,7 @@ install_node_nvm() {
   # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   # nvm install node
 }
-check_and_install "$INSTALL_NODE" install_node_nvm "should node & nvm be installed?"
+# check_and_install "$INSTALL_NODE" install_node_nvm "should node & nvm be installed?"
 
 # set up yarn
 install_yarn() {
@@ -19,7 +19,7 @@ install_yarn() {
   # sudo apt install --no-install-recommends yarn
   # # the --no-install-recommends flag skips the node installation
 }
-check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
+# check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
 
 # rails and rvm
 install_rvm_rails() {
@@ -44,19 +44,28 @@ install_rvm_rails() {
   read -s PASSWORD
   echo
 
+  # # install postgres
   sudo apt-get install postgresql postgresql-contrib libpq-dev -y
   sudo apt-get install libpq-dev -y
-  # log as postgres
-  sudo -i -u postgres
-  # startup psql terminal
-  psql
-  # create a superuser with the same name and password as the current linux user
-  CREATE USER $USER WITH PASSWORD $PASSWORD;
-  ALTER USER $USER WITH SUPERUSER;
-  # exit psql
-  \q
-  # log off as postgres
-  exit
+
+  # log as postgres and add current user as superuser (if the user already exists, it isnt created, but it still gains superuser)
+  sudo service postgresql start
+  sudo -u postgres psql -c "
+  DO
+  \$do$
+    BEGIN
+      IF NOT EXISTS (
+          SELECT                       -- SELECT list can stay empty for this
+          FROM   pg_catalog.pg_roles
+          WHERE  rolname = '$USER') THEN
+          CREATE USER $USER WITH PASSWORD '$PASSWORD';
+      END IF;
+
+      ALTER USER $USER WITH SUPERUSER;  
+    END
+  \$do$;
+  "
+  # psql code adapted from https://stackoverflow.com/questions/8092086/create-postgresql-role-user-if-it-doesnt-exist
 }
 check_and_install "$INSTALL_RAILS" install_rvm_rails "should rails & ruby be installed?"
 
