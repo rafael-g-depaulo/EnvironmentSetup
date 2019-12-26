@@ -26,23 +26,23 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ####### PARSE ARGUMENTS ###########################################################################
 . $DIR/scripts/parse_arguments.sh
 
-# ###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ###################################################
-# . $DIR/scripts/wsl_setup.sh
+###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ###################################################
+. $DIR/scripts/wsl_setup.sh
 
-# ######## UPDATE REPOS #############################################################################
-# . $DIR/scripts/update_repos.sh
+######## UPDATE REPOS #############################################################################
+. $DIR/scripts/update_repos.sh
 
-# ######## SHELL STUFF & DOTFILES ###################################################################
+######## SHELL STUFF & DOTFILES ###################################################################
 
-# # install zsh and oh-my-zsh
-# . $DIR/scripts/install_oh_my_zsh.sh
+# install zsh and oh-my-zsh
+. $DIR/scripts/install_oh_my_zsh.sh
 
-# # call subscript that sets up dotfiles
-# # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
-# . $DIR/scripts/set_up_dotfiles.sh  # set up dotfiles
+# call subscript that sets up dotfiles
+# the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
+. $DIR/scripts/set_up_dotfiles.sh  # set up dotfiles
 
-# ######### MY UTILITIES ############################################################################
-# . $DIR/scripts/install_utilities.sh
+######### MY UTILITIES ############################################################################
+. $DIR/scripts/install_utilities.sh
 
 ######### MY DEVELOPMENT TOOLS ####################################################################
 . $DIR/scripts/install_dev_tools.sh

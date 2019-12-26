@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source "$DIR/utils/check_and_install.sh"
+source "$DIR/utils/apt_install.sh"
 
 update_repos() {
 
@@ -12,11 +13,10 @@ update_repos() {
 
   # updating
   sudo apt update
-  sudo apt-get update
 
   # just to be sure these important tools are installed on the machine
-  sudo apt-get install build-essential -y
-  sudo apt-get install wget curl git -y
+  apt_install build-essential
+  apt_install wget curl git
 
 }
 
