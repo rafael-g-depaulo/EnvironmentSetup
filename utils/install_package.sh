@@ -1,5 +1,7 @@
 #!/bin/bash/
 
+source "$DIR/util/apt_get_install.sh"
+
 # in this file is declared a function that installs a package, if it isnt already installed.
 # if the package is already installed, it does nothing
 install_package() {
@@ -15,7 +17,7 @@ install_package() {
   # if package isnt installed, install it
   if [ 0 == $PKG_OK ]; then
     echo "No $PKG. Setting up $PKG."
-    sudo apt-get install -y -qq $FLAGS $PKG  -qq > /dev/null
+    apt_get_install $PKG $FLAGS
 
   # if its already installed, just move on
   else
