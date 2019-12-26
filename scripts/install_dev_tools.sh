@@ -13,24 +13,19 @@ install_node_nvm() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   nvm install node
-}
-check_and_install "$INSTALL_NODE" install_node_nvm "should node & nvm be installed?"
 
-# set up yarn
-install_yarn() {
+  # yarn setup
   echo "installing yarn!"
   install_package yarn --no-install-recommends
   # the --no-install-recommends flag skips the node installation
 }
-check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
+check_and_install "$INSTALL_NODE" install_node_nvm "should node be installed?"
 
 # rails and rvm
 install_rvm_rails() {
   echo "installing rvm & rails!"
   # # this takes a long ass while, strap yourself
   install_package gnupg2
-  
-  
 
   if type rvm | grep -i function > /dev/null; then
     echo "rvm already set up"

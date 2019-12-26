@@ -26,25 +26,13 @@ case $i in
   shift # past argument with no value
   ;;
 
-  # yarn options
-  --yarn)
-  INSTALL_NODE=YES
-  INSTALL_YARN=YES
-  shift # past argument with no value
-  ;;
-  --no-yarn)
-  INSTALL_YARN=NO
-  shift # past argument with no value
-  ;;
-
   # rails options
   --rails|-r)
-  INSTALL_NODE=YES
-  INSTALL_YARN=YES
+  INSTALL_RAILS=YES
   shift # past argument with no value
   ;;
   --no-rails)
-  INSTALL_YARN=NO
+  INSTALL_RAILS=NO
   shift # past argument with no value
   ;;
 
