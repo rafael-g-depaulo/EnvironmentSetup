@@ -17,7 +17,7 @@ check_and_install "$INSTALL_NODE" install_node_nvm "should node & nvm be install
 # set up yarn
 install_yarn() {
   echo "installing yarn!"
-  sudo apt install -y -qq --no-install-recommends yarn
+  apt_install yarn --no-install-recommends
   # the --no-install-recommends flag skips the node installation
 }
 check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
@@ -26,7 +26,7 @@ check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
 install_rvm_rails() {
   echo "installing rvm & rails!"
   # # this takes a long ass while, strap yourself
-  # sudo apt install -y -qq gnupg2
+  # apt_install gnupg2
   # gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   # cd /tmp
   # curl -sSL https://get.rvm.io -o rvm.sh

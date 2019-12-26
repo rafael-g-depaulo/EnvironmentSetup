@@ -5,6 +5,8 @@
 apt_install() {
   # $1: the name of the package we're installing
   local PKG=$1
+  # $2: the aditional flags that should be passed to apt-get 
+  local FLAGS=$2
 
   # check wether or not the package is already installed
   local PKG_OK=$(dpkg -l | awk '/^ii +'"$PKG"' +/' | egrep "^ii" | wc -l)
@@ -13,7 +15,7 @@ apt_install() {
   # if package isnt installed, install it
   if [ 0 == $PKG_OK ]; then
     echo "No $PKG. Setting up $PKG."
-    sudo apt-get install -y -qq $PKG  -qq > /dev/null
+    sudo apt-get install -y -qq $FLAGS $PKG  -qq > /dev/null
 
   # if its already installed, just move on
   else
