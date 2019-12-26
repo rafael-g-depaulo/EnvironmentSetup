@@ -16,38 +16,42 @@
 #! OBS: remember to run this to copy your windows ssh keys to this if you're using wsl inside a windows pc that has ssh keys
 # cp -r /mnt/c/Users/<your windows user name here>/.ssh ~/.
 
-## ADD PERMISSIONS TO ALL SUBSCRIPTS ######################################################################
+## ADD PERMISSIONS TO ALL SUBSCRIPTS ##############################################################
 chmod a+w -R .
 
-####### PARSE ARGUMENTS ####################################################################################
-. ./scripts/parse_arguments.sh
-echo "1"
+## GET CURRENT PATH ###############################################################################
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# copied from https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
 
-# ###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ##########################################################
-. ./scripts/wsl_setup.sh
-echo "2"
+####### PARSE ARGUMENTS ###########################################################################
+printf "1: "
+. $DIR/scripts/parse_arguments.sh
 
-# ######## UPDATE REPOS ####################################################################################
-. ./scripts/update_repos.sh
-echo "3"
+###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ###################################################
+printf "2: "
+. $DIR/scripts/wsl_setup.sh
 
-######## SHELL STUFF & DOTFILES ############################################################################
+######## UPDATE REPOS #############################################################################
+printf "3: "
+. $DIR/scripts/update_repos.sh
+
+######## SHELL STUFF & DOTFILES ###################################################################
 
 # install zsh and oh-my-zsh
-. ./scripts/install_oh_my_zsh.sh
-echo "4"
+printf "4: "
+. $DIR/scripts/install_oh_my_zsh.sh
 
 # call subscript that sets up dotfiles
 # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
 cd scripts              # the set_up_dotfiles.sh script only works when ran directly from './scripts'
-. ./set_up_dotfiles.sh  # set up dotfiles
+. $DIR/set_up_dotfiles.sh  # set up dotfiles
+printf "5: "
 cd ..                   # go back to this git's root
-echo "5"
 
-######### MY UTILITIES ####################################################################################
-. ./scripts/install_utilities.sh
-echo "6"
+######### MY UTILITIES ############################################################################
+printf "6: "
+. $DIR/scripts/install_utilities.sh
 
-######### MY DEVELOPMENT TOOLS ############################################################################
-. /scripts/install_dev_tools.sh
-echo "7"
+######### MY DEVELOPMENT TOOLS ####################################################################
+printf "7: "
+. $DIR/scripts/install_dev_tools.sh
