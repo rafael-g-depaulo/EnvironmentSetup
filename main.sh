@@ -24,34 +24,27 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # copied from https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
 
 ####### PARSE ARGUMENTS ###########################################################################
-printf "1: "
 . $DIR/scripts/parse_arguments.sh
 
 ###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ###################################################
-printf "2: "
 . $DIR/scripts/wsl_setup.sh
 
 ######## UPDATE REPOS #############################################################################
-printf "3: "
 . $DIR/scripts/update_repos.sh
 
 ######## SHELL STUFF & DOTFILES ###################################################################
 
 # install zsh and oh-my-zsh
-printf "4: "
 . $DIR/scripts/install_oh_my_zsh.sh
 
 # call subscript that sets up dotfiles
 # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
 cd scripts              # the set_up_dotfiles.sh script only works when ran directly from './scripts'
 . $DIR/set_up_dotfiles.sh  # set up dotfiles
-printf "5: "
 cd ..                   # go back to this git's root
 
 ######### MY UTILITIES ############################################################################
-printf "6: "
 . $DIR/scripts/install_utilities.sh
 
 ######### MY DEVELOPMENT TOOLS ####################################################################
-printf "7: "
 . $DIR/scripts/install_dev_tools.sh
