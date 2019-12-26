@@ -30,3 +30,11 @@ install_tool() {
     fi
   done
 }
+
+# usage of install_tool shall be as shown bellow:
+# to install tool "node", with packages "yarn" (with flag --no-install-recommends), "nvm" and "node"
+
+install_tool "node"
+  "nvm"  ""
+  "node" ""
+  "yarn" "--no-install-recommends"
