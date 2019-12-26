@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source "$DIR/utils/check_and_install.sh"
-source "$DIR/utils/apt_install.sh"
+source "$DIR/utils/install_package.sh"
 
 # set up nvm and node
 install_node_nvm() {
@@ -17,7 +17,7 @@ check_and_install "$INSTALL_NODE" install_node_nvm "should node & nvm be install
 # set up yarn
 install_yarn() {
   echo "installing yarn!"
-  sudo apt install -y -qq --no-install-recommends yarn
+  install_package yarn --no-install-recommends
   # the --no-install-recommends flag skips the node installation
 }
 check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
@@ -26,7 +26,7 @@ check_and_install "$INSTALL_YARN" install_yarn "should yarn be installed?"
 install_rvm_rails() {
   echo "installing rvm & rails!"
   # # this takes a long ass while, strap yourself
-  # sudo apt install -y -qq gnupg2
+  # install_package gnupg2
   # gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   # cd /tmp
   # curl -sSL https://get.rvm.io -o rvm.sh
@@ -46,10 +46,10 @@ install_rvm_rails() {
   echo
 
   # # install postgres
-  apt_install postgresql
-  apt_install postgresql-contrib
-  apt_install libpq-dev
-  apt_install libpq-dev
+  install_package postgresql
+  install_package postgresql-contrib
+  install_package libpq-dev
+  install_package libpq-dev
 
   # log as postgres and add current user as superuser (if the user already exists, it isnt created, but it still gains superuser)
   sudo service postgresql start
