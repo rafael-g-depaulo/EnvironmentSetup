@@ -31,24 +31,25 @@ install_rvm_rails() {
   install_package gnupg2
   
   
-  if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
-    source "$HOME/.rvm/scripts/rvm"
-  elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
-    source "/usr/local/rvm/scripts/rvm"
-  else
-    printf "ERROR: An RVM installation was not found.\n"
 
+  if type rvm | grep -i function > /dev/null; then
+    echo "rvm already set up"
+  elif type rvm | grep -i .rvm/bin/rvm > /dev/null; then
+    echo "rvm already set up"
+    source /home/$USER/.rvm/scripts/rvm
+  else
+    echo "gonna install rvm"
     echo "this is gonna take a fucking while, strap in buckaroo"
     # gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    curl_install "-sSL https://get.rvm.io" "-s stable --rails"
+    curl_install "-sSL https://get.rvm.io" "-s stable --rails"  
+    # curl -sSL https://get.rvm.io &> /dev/null | bash -s stable --rails &> /dev/null
+    # curl -sSL https://get.rvm.io | bash -s stable --rails
     source /home/$USER/.rvm/scripts/rvm
-    echo "getting rvm"
   fi
 
-  export PATH=/home/$USER/.rvm/gems/ruby-2.6.3/bin:$PATH
-  rvm get stable --auto-dotfiles
-  rvm install current
-  rvm use --default current
+  rvm get stable --auto-dotfiles &> /dev/null
+  rvm install current &> /dev/null
+  rvm use --default current &> /dev/null
   
   # postgres (i use postgresdb with rails, technically)
 
@@ -62,7 +63,7 @@ install_rvm_rails() {
   sudo service postgresql start
 
   local PASSWORD=""
-  
+
   if sudo -u postgres psql -t -c '\du' | cut -d \| -f 1 | grep -qw $USER; then
     # user exists
     # $? is 0
@@ -75,19 +76,8 @@ install_rvm_rails() {
     echo
     
     sudo -u postgres psql -c "
-    DO
-    \$do$
-      BEGIN
-        IF NOT EXISTS (
-            SELECT                       -- SELECT list can stay empty for this
-            FROM   pg_catalog.pg_roles
-            WHERE  rolname = '$USER') THEN
-            CREATE USER $USER WITH PASSWORD '$PASSWORD';
-        END IF;
-
-        ALTER USER $USER WITH SUPERUSER;  
-      END
-    \$do$;
+      CREATE USER $USER WITH PASSWORD '$PASSWORD';
+      ALTER USER $USER WITH SUPERUSER;
     "
   fi
   # get password from user, and create psql user

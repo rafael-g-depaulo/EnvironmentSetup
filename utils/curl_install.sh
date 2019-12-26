@@ -13,6 +13,7 @@ curl_install() {
   shift
 
   # install the package
-  curl $URL &> /dev/null | bash $FLAGS &> /dev/null
+  # curl --silent --output /dev/null $URL | bash $FLAGS &> /dev/null
+  curl --silent $URL | bash $FLAGS &> /dev/null
 
 }

@@ -1,6 +1,6 @@
 #!/bin/bash/
 
-source "$DIR/util/apt_get_install.sh"
+source "$DIR/utils/apt_get_install.sh"
 
 # in this file is declared a function that installs a package, if it isnt already installed.
 # if the package is already installed, it does nothing
