@@ -39,9 +39,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # call subscript that sets up dotfiles
 # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
-cd scripts              # the set_up_dotfiles.sh script only works when ran directly from './scripts'
-. $DIR/set_up_dotfiles.sh  # set up dotfiles
-cd ..                   # go back to this git's root
+. $DIR/scripts/set_up_dotfiles.sh  # set up dotfiles
 
 ######### MY UTILITIES ############################################################################
 . $DIR/scripts/install_utilities.sh
