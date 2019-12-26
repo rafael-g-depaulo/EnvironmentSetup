@@ -35,7 +35,13 @@ install_rvm_rails() {
   # rvm use --default current
   # cd
   
-  # # postgres (i use postgresdb with rails, technically)
+  # postgres (i use postgresdb with rails, technically)
+
+  # Read Password
+  echo -n "Please insert your password (use your actual password for this linux user): "
+  read -s PASSWORD
+  echo
+
   sudo apt-get install postgresql postgresql-contrib libpq-dev -y
   sudo apt-get install libpq-dev -y
   # log as postgres
