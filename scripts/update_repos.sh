@@ -1,4 +1,6 @@
-source '../utils/check_and_install.sh'
+#!/bin/bash
+
+source "$DIR/utils/check_and_install.sh"
 
 update_repos() {
 

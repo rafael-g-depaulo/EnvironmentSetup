@@ -1,6 +1,8 @@
+#!/bin/bash
+
 # this gets a list of all dotfiles in the dotfiles folder, and
 # adds them to a temporary file, so we can work with them
-dotfiles_folder="../dotfiles"
+dotfiles_folder="$DIR/dotfiles"
 get_only_dotfiles="/.??*"
 ls $dotfiles_folder$get_only_dotfiles  > ./dotfiles_list.txt
 

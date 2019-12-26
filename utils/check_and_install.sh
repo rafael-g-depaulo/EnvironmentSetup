@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # in this file is declared a function that:
 # 1. checks a variable Y.
 #   - if its "YES", installs the tool X

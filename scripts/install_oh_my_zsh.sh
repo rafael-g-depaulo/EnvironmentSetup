@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # INSTALL AND SETUP ZSH AND OH-MY-SZH
 # set up zsh and oh-my-zsh
 sudo apt-get install zsh
