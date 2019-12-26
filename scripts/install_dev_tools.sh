@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source '../utils/check_and_install.sh'
 
 # set up nvm and node

@@ -16,28 +16,35 @@
 #! OBS: remember to run this to copy your windows ssh keys to this if you're using wsl inside a windows pc that has ssh keys
 # cp -r /mnt/c/Users/<your windows user name here>/.ssh ~/.
 
-####### PARSE ARGUMENTS ####################################################################################
-. ./scripts/parse_arguments.sh
+## ADD PERMISSIONS TO ALL SUBSCRIPTS ##############################################################
+chmod a+w -R .
 
-# ###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ##########################################################
-. ./scripts/wsl_setup.sh
+## GET CURRENT PATH ###############################################################################
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# copied from https://stackoverflow.com/questions/59895/get-the-source-directory-of-a-bash-script-from-within-the-script-itself
 
-# ######## UPDATE REPOS ####################################################################################
-. ./scripts/update_repos.sh
+####### PARSE ARGUMENTS ###########################################################################
+. $DIR/scripts/parse_arguments.sh
 
-######## SHELL STUFF & DOTFILES ############################################################################
+###### SET UP CONNECTION TO WINDOWS SUPERSYSTEM ###################################################
+. $DIR/scripts/wsl_setup.sh
+
+######## UPDATE REPOS #############################################################################
+. $DIR/scripts/update_repos.sh
+
+######## SHELL STUFF & DOTFILES ###################################################################
 
 # install zsh and oh-my-zsh
-. ./scripts/install_oh_my_zsh.sh
+. $DIR/scripts/install_oh_my_zsh.sh
 
 # call subscript that sets up dotfiles
 # the script takes all dotfiles from ./dotfiles/*, and copies them to root "~/"
 cd scripts              # the set_up_dotfiles.sh script only works when ran directly from './scripts'
-. ./set_up_dotfiles.sh  # set up dotfiles
+. $DIR/set_up_dotfiles.sh  # set up dotfiles
 cd ..                   # go back to this git's root
 
-######### MY UTILITIES ####################################################################################
-. ./scripts/install_utilities.sh
+######### MY UTILITIES ############################################################################
+. $DIR/scripts/install_utilities.sh
 
-######### MY DEVELOPMENT TOOLS ############################################################################
-. /scripts/install_dev_tools.sh
+######### MY DEVELOPMENT TOOLS ####################################################################
+. $DIR/scripts/install_dev_tools.sh
