@@ -2,7 +2,7 @@
 
 # in this file is declared a function that installs a package, if it isnt already installed.
 # if the package is already installed, it does nothing
-apt_install() {
+install_package() {
   # $1: the name of the package we're installing
   local PKG=$1
   # $2: the aditional flags that should be passed to apt-get 
