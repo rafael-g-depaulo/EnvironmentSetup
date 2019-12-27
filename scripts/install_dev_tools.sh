@@ -3,22 +3,41 @@
 source "$DIR/utils/check_and_install.sh"
 source "$DIR/utils/install_package.sh"
 source "$DIR/utils/curl_install.sh"
+source "$DIR/utils/install_tool.sh"
 
 # set up nvm and node
-install_node_nvm() {
-  echo "installing node & nvm!"
-  curl_install "-o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh"
+install_node_nvm() (
 
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  nvm install node
+  # installs nvm
+  install_nvm() {
+    curl_install "-o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh"
+  }
+  
+  # installs node
+  install_node() {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    nvm install node &> /dev/null
+  }
 
-  # yarn setup
-  echo "installing yarn!"
-  install_package yarn --no-install-recommends
-  # the --no-install-recommends flag skips the node installation
-}
+  # installs yarn
+  install_yarn() {
+    echo "installing yarn!"
+    install_package yarn --no-install-recommends
+    # the --no-install-recommends flag skips the node installation
+  }
+
+  # if nvm exists, source it
+  local NVM_SCRIPT="$NVM_DIR/nvm.sh"
+  test -f $NVM_SCRIPT && source $NVM_SCRIPT
+
+  echo "installing node"
+  install_tool "node" \
+  "nvm"  install_nvm  \
+  "yarn" install_yarn \
+  "node" install_node
+)
 check_and_install "$INSTALL_NODE" install_node_nvm "should node be installed?"
 
 # rails and rvm

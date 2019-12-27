@@ -1,4 +1,5 @@
 #!/bin/bash/
+source "$DIR/utils/install_package.sh"
 
 # in this file is declared a function that installs a tool and its related packages
 install_tool() {
@@ -6,17 +7,15 @@ install_tool() {
   local TOOL=$1
   shift
 
+  printf "installing tool \"$TOOL\"\n"
+
   while test $# -gt 0; do
     # the name of the package we're installing
     local PKG=$1
     shift
 
     # the installation function to use (default to apt-get)
-    local INSTALL_FUNCTION=${1:-"apt_get_install"}
-    shift
-    
-    # the aditional (optional) flags that should be passed to apt-get 
-    local FLAGS=${1:-""}
+    local INSTALL_FUNCTION=${1:-"install_package"}
     shift
 
     # check wether or not the package is already installed
@@ -24,21 +23,21 @@ install_tool() {
     printf "  [$TOOL] Checking for $PKG: "
     
     # if package isnt installed, install it
-    if [ 0 == $PKG_OK ]; then
-      echo "No $PKG. Setting up $PKG."
-      $INSTALL_FUNCTION $PKG $FLAGS
-
+    # if type "$PKG" &> /dev/null | grep -i function > /dev/null && ! type "$PKG" &> /dev/null; then
+    if type "$PKG" &> /dev/null; then
     # if its already installed, just move on
-    else
       printf "ok\n"
+    else
+      echo "No $PKG. Setting up $PKG."
+      $INSTALL_FUNCTION $PKG
     fi
   done
 }
 
 # Usage of install_tool shall be as shown bellow:
-# to install tool "node", with packages "yarn" (with flag --no-install-recommends), "nvm" and "node"
+# to install tool "node", with packages "yarn", "nvm" and "node"
 
 # install_tool "node" \
-#   "nvm"  "echo pretending to install" "" \
-#   "node" "echo pretending to install" "" \
-#   "yarn" "echo pretending to install" "--no-install-recommends"
+#   "nvm"  "shell_function_that_installs_nvm"   \
+#   "node" "shell_function_that_installs_nvm"   \
+#   "yarn" "shell_function_that_installs_yarn"
