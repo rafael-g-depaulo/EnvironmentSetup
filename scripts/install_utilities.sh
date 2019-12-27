@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # installing utilities
+echo "Installing basic utilities"
 
 # git flow
 curl --silent --location  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh --output /tmp/gitflow-installer.sh
