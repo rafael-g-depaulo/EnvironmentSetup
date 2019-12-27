@@ -5,7 +5,7 @@ source "$DIR/utils/install_package.sh"
 
 update_repos() {
 
-  echo "updating repos"
+  echo "Updating repos"
 
   # adding repos
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg &> /dev/null | sudo apt-key add - &> /dev/null

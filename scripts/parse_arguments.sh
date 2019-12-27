@@ -25,7 +25,6 @@ case $i in
   shift
   ;;
 
-
 #! OH-MY-ZSH SETUP OPTIONS
   --oh-my-zsh|--omz|--zsh|-z)
   INSTALL_ZSH=YES
@@ -37,6 +36,15 @@ case $i in
   shift
   ;;
 
+#! UPDATE REPOS OPTIONS
+  --update-repos|--update|-u)
+  UPDATE_REPOS=YES
+  shift
+  ;;
+  --no-update-repos|--no-update)
+  UPDATE_REPOS=NO
+  shift
+  ;;
 
 #! DEV TOOLS OPTIONS
   # node and nvm options
@@ -72,8 +80,5 @@ if [ "$DEFAULT" = "YES" ]; then
   INSTALL_ZSH="YES"
   INSTALL_RAILS="YES"
   SETUP_DOTFILES="YES"
+  UPDATE_REPOS="YES"
 fi
-
-# echo "WINDOWS USER    = ${WINDOWS_USER}"
-# echo "DEFAULT         = ${DEFAULT}"
-# echo "INSTALL_NODE    = ${INSTALL_NODE}"
