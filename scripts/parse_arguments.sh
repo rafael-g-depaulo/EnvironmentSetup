@@ -14,10 +14,33 @@ case $i in
   DEFAULT=YES
   shift # past argument with no value
   ;;
-  
+
+#! DOTFILES SETUP OPTIONS
+  --dotfiles|-d)
+  SETUP_DOTFILES=YES
+  shift
+  ;;
+  --no-dotfiles|-no-d)
+  SETUP_DOTFILES=NO
+  shift
+  ;;
+
+
+#! OH-MY-ZSH SETUP OPTIONS
+  --oh-my-zsh|--omz|--zsh|-z)
+  INSTALL_ZSH=YES
+  shift
+  ;;
+
+  --noh-my-zsh|--nomz|--no-oh-my-zsh|--no-omz|--no-zsh)
+  INSTALL_ZSH=NO
+  shift
+  ;;
+
+
 #! DEV TOOLS OPTIONS
   # node and nvm options
-  --node|--nvm)
+  --node|--nvm|-N)
   INSTALL_NODE=YES
   shift # past argument with no value
   ;;
@@ -41,6 +64,15 @@ case $i in
   ;;
 esac
 done
+
+# if default, setup variables
+if [ "$DEFAULT" = "YES" ]; then
+  WINDOWS_USER="$USER"
+  INSTALL_NODE="YES"
+  INSTALL_ZSH="YES"
+  INSTALL_RAILS="YES"
+  SETUP_DOTFILES="YES"
+fi
 
 # echo "WINDOWS USER    = ${WINDOWS_USER}"
 # echo "DEFAULT         = ${DEFAULT}"
