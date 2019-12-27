@@ -27,5 +27,4 @@ setup_omz() (
   "omz"               install_omz   \
   "powerline fonts"   install_fonts
 )
-
 check_and_install "$INSTALL_ZSH" setup_omz "Do you want to install oh-my-zsh as your shell?"
