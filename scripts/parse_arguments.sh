@@ -25,6 +25,16 @@ case $i in
   shift
   ;;
 
+#! WSL SETUP OPTIONS
+  --wsl|-w)
+  SETUP_WSL=YES
+  shift
+  ;;
+  --no-wsl)
+  SETUP_WSL=NO
+  shift
+  ;;
+
 #! OH-MY-ZSH SETUP OPTIONS
   --oh-my-zsh|--omz|--zsh|-z)
   INSTALL_ZSH=YES
