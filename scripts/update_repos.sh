@@ -8,16 +8,16 @@ update_repos() {
   echo "updating repos"
 
   # adding repos
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg &> /dev/null | sudo apt-key add - &> /dev/null
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" &> /dev/null | sudo tee /etc/apt/sources.list.d/yarn.list
 
   # updating
-  sudo apt update
+  sudo apt update &> /dev/null
 
   # just to be sure these important tools are installed on the machine
-  install_package build-essential
-  install_package wget curl git
-  install_package gnupg2
+  install_package_silence build-essential
+  install_package_silence wget curl git
+  install_package_silence gnupg2
 
 }
 
