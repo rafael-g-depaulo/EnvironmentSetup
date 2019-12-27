@@ -17,6 +17,7 @@ update_repos() {
   # just to be sure these important tools are installed on the machine
   install_package build-essential
   install_package wget curl git
+  install_package gnupg2
 
 }
 

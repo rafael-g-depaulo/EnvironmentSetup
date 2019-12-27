@@ -15,7 +15,7 @@ install_tool() {
     shift
 
     # the installation function to use (default to apt-get)
-    local INSTALL_FUNCTION=${1:-"install_package"}
+    local INSTALL_FUNCTION=${1:-"apt_get_install &> /dev/null"}
     shift
 
     # check wether or not the package is already installed
