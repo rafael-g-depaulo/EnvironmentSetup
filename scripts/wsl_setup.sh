@@ -1,5 +1,4 @@
 #!/bin/bash
 
-cd
-mkdir /mnt/c/projects
-ln -s /mnt/c/projects
+mkdir /mnt/c/projects &> /dev/null
+ln -s /mnt/c/projects &> /dev/null

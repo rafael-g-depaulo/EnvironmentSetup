@@ -3,6 +3,11 @@
 # installing utilities
 
 # git flow
-wget -q  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install stable; rm gitflow-installer.sh
-git config gitflow.feature.finish.no-ff yes --global
+curl --silent --location  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh --output /tmp/gitflow-installer.sh
+chmod a+x /tmp/gitflow-installer.sh
+sudo bash /tmp/gitflow-installer.sh install stable &> /dev/null
+rm /tmp/gitflow-installer.sh
+
+# git flow config
+git config --global gitflow.feature.finish.no-ff yes
 git config --global --add merge.ff false
