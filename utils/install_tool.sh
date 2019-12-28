@@ -6,6 +6,7 @@ install_tool() {
   # $1: the name of the tool we're installing
   local TOOL=$1
   shift
+  
 
   printf "installing tool \"$TOOL\"\n"
 
@@ -18,15 +19,18 @@ install_tool() {
     local INSTALL_FUNCTION=${1:-"apt_get_install &> /dev/null"}
     shift
 
+    # optional, overrides check to see if package is installed
+    local IS_INSTALLED=$1
+    shift
+    
     # check wether or not the package is already installed
     local PKG_OK=$(dpkg -l | awk '/^ii +'"$PKG"' +/' | egrep "^ii" | wc -l)
     printf "  [$TOOL] Checking for $PKG: "
     
     # if package isnt installed, install it
-    # if type "$PKG" &> /dev/null | grep -i function > /dev/null && ! type "$PKG" &> /dev/null; then
-    if type "$PKG" &> /dev/null; then
+    if [ "$IS_INSTALLED" = "YES" ] || type "$PKG" &> /dev/null ; then
     # if its already installed, just move on
-      printf "ok\n"
+      printf "ok.\n"
     else
       echo "No $PKG. Setting up $PKG."
       $INSTALL_FUNCTION $PKG

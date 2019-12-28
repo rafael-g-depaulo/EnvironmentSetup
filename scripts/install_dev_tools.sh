@@ -31,10 +31,10 @@ setup_node() (
   local NVM_SCRIPT="$NVM_DIR/nvm.sh"
   test -f $NVM_SCRIPT && source $NVM_SCRIPT
 
-  install_tool "node" \
-  "nvm"  install_nvm  \
-  "yarn" install_yarn \
-  "node" install_node
+  install_tool "node"     \
+  "nvm"  install_nvm  ""  \
+  "yarn" install_yarn ""  \
+  "node" install_node ""
 )
 check_and_install "$INSTALL_NODE" setup_node "should node be installed?"
 
@@ -93,10 +93,10 @@ setup_rails() (
     source /home/$USER/.rvm/scripts/rvm
   fi
 
-  install_tool "rails"    \
-  "rvm"   install_rvm     \
-  "ruby"  install_ruby    \
-  "psql"  install_postgres
+  install_tool "rails"          \
+  "rvm"   install_rvm       ""  \
+  "ruby"  install_ruby      ""  \
+  "psql"  install_postgres  ""
 
 )
 check_and_install "$INSTALL_RAILS" setup_rails "should rails & ruby be installed?"

@@ -22,9 +22,19 @@ setup_omz() (
     install_package_silence fonts-powerline
   }
 
-  install_tool "oh-my-zsh"          \
-  "zsh"               install_zsh   \
-  "omz"               install_omz   \
-  "powerline fonts"   install_fonts
+  # check if oh-my-zsh is installed
+  if [[ $ZSH == *".oh-my-zsh"* ]]; then
+    HAS_OMZ="YES"
+  fi
+
+  # check if powerline fonts are installed
+  if [ $(dpkg -l | awk '/^ii +'"fonts-powerline"' +/' | egrep "^ii" | wc -l) = 1 ]; then
+    HAS_FONTS="YES"
+  fi
+
+  install_tool "oh-my-zsh"                    \
+  "zsh"               install_zsh   ""        \
+  "omz"               install_omz   $HAS_OMZ  \
+  "powerline fonts"   install_fonts $HAS_FONTS
 )
 check_and_install "$INSTALL_ZSH" setup_omz "Do you want to install oh-my-zsh as your shell?"
