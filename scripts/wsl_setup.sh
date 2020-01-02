@@ -13,6 +13,16 @@ setup_wsl() (
 
   # copy ssh keys from windows supersystem to linux subsystem
   copy_ssh_keys() {
+
+    if [ -z "$WINDOWS_USER" ]; then
+      printf "What's your username in your windows system? (press enter to use the default: $USER) "
+      read WINDOWS_USER
+      
+      # if user didnt enter Windows username, use Linux username
+      if [ -z "$WINDOWS_USER" ]; then
+        WINDOWS_USER=$USER
+      fi
+    fi
     cp -r /mnt/c/Users/$WINDOWS_USER/.ssh ~/.
     chmod 700 ~/.ssh/id_rsa
   }
